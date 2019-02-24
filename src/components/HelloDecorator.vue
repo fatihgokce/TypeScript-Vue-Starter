@@ -2,22 +2,32 @@
 <!-- This is an alternative way to define the Hello component using decorators -->
 <template>
     <div>
-        <div class="greeting">Hello {{name}}{{exclamationMarks}}</div>
+        <div class="greeting">Hello23 {{name}}{{exclamationMarks}}</div>
         <button @click="decrement">-</button>
         <button @click="increment">+</button>
+        <button @click="openPicker">open</button>
+      <datepicker ref="dp" :value="state.date" name="uniquename"></datepicker>
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-
-@Component
+import Datepicker  from "vuejs-datepicker";  
+@Component({
+  components: {
+  Datepicker
+  },
+})
 export default class HelloDecorator extends Vue {
     @Prop() name!: string;
     @Prop() initialEnthusiasm!: number;
 
     enthusiasm = this.initialEnthusiasm;
-
+    state = {date: new Date(2017, 9,  16)};
+      $refs!: {
+        checkboxElement: HTMLFormElement,
+        dp:any
+    }
     increment() {
         this.enthusiasm++;
     }
@@ -26,7 +36,9 @@ export default class HelloDecorator extends Vue {
             this.enthusiasm--;
         }
     }
-
+    openPicker(){
+        this.$refs.dp.showCalendar();
+    }
     get exclamationMarks(): string {
         return Array(this.enthusiasm + 1).join('!');
     }

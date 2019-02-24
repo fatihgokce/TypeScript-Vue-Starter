@@ -10,10 +10,10 @@ let v = new Vue({
         <h1>Hello Component</h1>
         <hello-component :name="name" :initialEnthusiasm="5" />
         <h1>Hello Decorator Component</h1>
-        <hello-decorator-component :name="name" :initialEnthusiasm="5" />
+        <hello-decorator-component :name="name" :initialEnthusiasm="1" />
         </div>
     `,
-    data: { name: "World" },
+    data: { name: "World3" },
     components: {
         HelloComponent,
         HelloDecoratorComponent
