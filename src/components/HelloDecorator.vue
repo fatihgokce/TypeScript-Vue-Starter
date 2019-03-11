@@ -13,6 +13,8 @@
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import Datepicker  from "vuejs-datepicker";  
+
+
 @Component({
   components: {
   Datepicker
@@ -27,6 +29,16 @@ export default class HelloDecorator extends Vue {
       $refs!: {
         checkboxElement: HTMLFormElement,
         dp:any
+    }
+    async created() {
+        console.log("created");  
+        this.fetchData();      
+    }
+    async fetchData(){
+        debugger;
+       let data= await fetch('https://jsonplaceholder.typicode.com/users');
+       let js=await data.json();
+       console.log(js);
     }
     increment() {
         this.enthusiasm++;
