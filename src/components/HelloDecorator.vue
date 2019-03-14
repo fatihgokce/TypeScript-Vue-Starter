@@ -35,10 +35,12 @@ export default class HelloDecorator extends Vue {
         this.fetchData();      
     }
     async fetchData(){
-        debugger;
-       let data= await fetch('https://jsonplaceholder.typicode.com/users');
-       let js=await data.json();
-       console.log(js);
+       let endPoint=await fetch("http://localhost:24514/tr/tourvisio/apiendpoint",{mode: 'no-cors'});
+
+       //console.log(endPoint.json());
+       let data= await (await fetch('https://jsonplaceholder.typicode.com/users')).json();
+    //    let js=await data.json();
+       console.log(data);
     }
     increment() {
         this.enthusiasm++;
